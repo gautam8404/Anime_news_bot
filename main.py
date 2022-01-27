@@ -290,7 +290,7 @@ async def fetch_news():
         
         
         print('going to sleep')
-        await asyncio.sleep(10)    
+        await asyncio.sleep(60)    
         print("nothing")
     
 
