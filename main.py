@@ -173,7 +173,7 @@ async def livechart_fetch(last):
     url = "https://www.livechart.me/feeds/headlines"
     response = requests.get(url)
     response_html = response.content
-    soup = BeautifulSoup(response_html, features='xml')
+    soup = BeautifulSoup(response_html,'xml')
     title_list = soup.find('item').title.contents
     title = title_list[0]
     link_list = soup.find('item').link.contents
