@@ -1,0 +1,5 @@
+telethon
+asyncpraw
+https://codeload.github.com/MiyukiKun/FastTelethonhelper/zip/refs/heads/main
+yt-dlp
+tweepy

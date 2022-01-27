@@ -1,0 +1,76 @@
+{
+    "name": "Reddit Kang Bot",
+    "description": "Bot that takes new posts from reddit and posts then on telegram channel",
+    "website": "https://github.com/MiyukiKun",
+    "repository": "https://github.com/MiyukiKun/Reddit-Kang",
+    "keywords": ["telegrambot", "redditbot"],
+    "success_url" : "t.me/r_ecchi",
+    "env": {
+        "API_ID": {
+          "description": "Get this value from https://my.telegram.org",
+          "value": ""
+        },
+        "API_HASH": {
+          "description": "Get this value from https://my.telegram.org",
+          "value": ""
+        },
+         "BOT_TOKEN": {
+          "description": "Your bot token, as a string. Get it from @BotFather on telegram",
+          "value": ""
+        },
+        "REDDIT_PERSONAL_USE_SCRIPT" : {
+            "description": "See how to get it from https://github.com/reddit-archive/reddit/wiki/OAuth2",
+            "value": ""
+        },
+        "REDDIT_SECRET" : {
+            "description": "Get this along with reddit personal use script",
+            "value": ""
+        },
+        "AGENT" : {
+            "description": "Name of app you used to set up reddit api access",
+            "value": ""
+        },
+        "SUBREDDIT" : {
+            "description": "Target Subreddit",
+            "value": ""
+        },
+        "APPROVAL_CHANNEL_ID" : {
+            "description": "approval Channel",
+            "value": ""
+        },
+        "MAIN_CHANNEL_ID" : {
+          "description": "Main Channel where post will be posted",
+          "value": ""
+        },
+        "FLAIR" : {
+          "description": "sort by flair of the subreddit if you want, if you don't want to use it then use 'None' remember to keep first letter capital i.e. 'N' ",
+          "value": ""
+        },
+        "TWITTER_API_KEY" : {
+          "description": "get it from https://developer.twitter.com/en/docs/twitter-api, NOTE: you need elevated access to use this bot",
+          "value": ""
+        },
+        "TWITTER_API_SECRET" : {
+          "description": "mentioned above",
+          "value": ""
+        },
+        "ACCESS_TOKEN" : {
+          "description": "mentioned above",
+          "value": ""
+        },
+        "ACCESS_SECRET" : {
+          "description": "mentioned above",
+          "value": ""
+        }
+    },
+    "buildpacks": [{"url": "heroku/python"}, 
+    {
+      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+    }],
+    "formation": {
+        "worker": {
+          "quantity": 1,
+          "size": "free"
+        }
+      }
+}
