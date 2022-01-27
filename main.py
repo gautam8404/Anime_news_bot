@@ -11,6 +11,7 @@ from telethon.tl.types import DocumentAttributeVideo
 import asyncpraw
 reddit = asyncpraw.Reddit(client_id = reddit_personal_use_script, client_secret = reddit_secret, user_agent = agent)
 
+channel_id = int(channel_id)
 
 def delete_files():
     folder = 'videos'
