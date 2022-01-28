@@ -296,10 +296,7 @@ async def fetch_news():
     
 
 
-'''
-CallbackQuery.Event(original_update=UpdateBotCallbackQuery(query_id=5754466299722642223, user_id=1339816092, peer=PeerChannel(channel_id=1254227267), msg_id=187, chat_instance=1791522966507439370, data=b'approve', game_short_name=None), query=UpdateBotCallbackQuery(query_id=5754466299722642223, user_id=1339816092, peer=PeerChannel(channel_id=1254227267), msg_id=187, chat_instance=1791522966507439370, data=b'approve', game_short_name=None), data_match=None, pattern_match=None)
-^[^N^CTraceback (most recent call last):
-'''
+
 
 
 
