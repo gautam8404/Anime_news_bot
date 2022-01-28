@@ -13,6 +13,7 @@ reddit = asyncpraw.Reddit(client_id = reddit_personal_use_script, client_secret 
 
 channel_id = int(channel_id)
 
+
 def delete_files():
     folder = 'videos'
     for filename in os.listdir(folder):
@@ -26,8 +27,8 @@ def delete_files():
             print('Failed to delete %s. Reason: %s' % (file_path, e))
 
 ydl_opts = {
-     'writethumbnail': True,
-     'format': '136+140''398+140' '22'  'bestvideo[ext!=webm]+bestaudio[ext!=webm]/best[ext!=webm]',
+    'writethumbnail': True,
+    'format': '136+140''398+140' '22'  'bestvideo[ext!=webm]+bestaudio[ext!=webm]/best[ext!=webm]',
     'outtmpl': 'videos/youtube.mp4'
 }
 
@@ -82,8 +83,8 @@ def read_file(source):
 
 async def reddit_fetch(last):
     
-    # channel = await bot.get_entity(f"t.me/{channel_id}")
-    channel = channel_id
+    channel = await bot.get_entity(channel_id)
+    # channel = channel_id
     subred = await reddit.subreddit(subreddit)
     if flair == None:
         new = subred.new(limit = 1)
@@ -168,9 +169,9 @@ async def reddit_fetch(last):
                             print(e)
 
 async def livechart_fetch(last):
-    # channel = await bot.get_entity(f"t.me/{channel_id}")
-    channel = channel_id
-    print("out from reddit")
+    channel = await bot.get_entity(channel_id)
+    # channel = channel_id
+    print("from livechart")
     url = "https://www.livechart.me/feeds/headlines"
     response = requests.get(url)
     response_html = response.content
@@ -180,43 +181,46 @@ async def livechart_fetch(last):
     link_list = soup.find('item').link.contents
     link = link_list[0]
     thumb = soup.find('media:thumbnail')["url"]
-    word_dict = ["trailer", "Trailer","TRAILER", "pv", "PV", "teaser", "Teaser","visual", "Visual","preview", "Preview", "Announced","announced","project", "Project","op", "OP", "ed", "ED", "Announcement"]
+    print(thumb)
+    word_dict = ["trailer", "Trailer","TRAILER", "pv", "PV", "teaser", "Teaser","visual", "Visual","preview", "Preview", "Announced","announced","project", "Project","op", "OP", "ed", "ED", "Announcement","TRAILER","anime","begins"]
     if link != last:
         try:
-            if "youtube" or "youtu.be" in link:
-                new_title = f"[{title}]({link})"
-                for word in word_dict:
-                    if word in title:
-                        new_title = title.replace(word, f"[{word}]({link})")
-                        break
-                delete_files()
-                dwl_vid(link)
-                location = "videos/youtube.mp4"
-                file = location
-                check_thumb()
-                thumbnail = "videos/thumb.png"
-                dur = get_duration()
-                print(dur)
-                dur = int(dur)
-                print(dur)
-                await bot.send_message(
-                channel, 
-                f"{new_title}\n\n@{main_channel_id}", 
-                file=file,
-                thumb=thumbnail,
-                supports_streaming=True,
-                attributes=[DocumentAttributeVideo(
-                duration=dur, 
-                w=1260, 
-                h=720, 
-                supports_streaming=True
-                )],
-                buttons=[Button.inline('approve', b'approve'),Button.inline('reject', b'reject')]
-            )
-                print("uploaded")
-                write_file(link,"livechart")
-            else:
+            new_title = f"[{title}]({link})"
+            for word in word_dict:
+                if word in title:
+                    new_title = title.replace(word, f"[{word}]({link})")
+                    break
+            delete_files()
+            dwl_vid(link)
+            location = "videos/youtube.mp4"
+            file = location
+            check_thumb()
+            thumbnail = "videos/thumb.png"
+            dur = get_duration()
+            print(dur)
+            dur = int(dur)
+            print(dur)
+            await bot.send_message(
+            channel, 
+            f"{new_title}\n\n@{main_channel_id}", 
+            file=file,
+            thumb=thumbnail,
+            supports_streaming=True,
+            attributes=[DocumentAttributeVideo(
+            duration=dur, 
+            w=1260, 
+            h=720, 
+            supports_streaming=True
+            )],
+            buttons=[Button.inline('approve', b'approve'),Button.inline('reject', b'reject')]
+        )
+            print("uploaded")
+            write_file(link,"livechart")
+
+        except Exception as e:
+                print(e)
                 try:
+                    print("video not found looking for twiiter image")
                     split = link.split('/')
                     id = split[-1]
                     status = api.get_status(id)
@@ -240,6 +244,7 @@ async def livechart_fetch(last):
                 except Exception as e:
                     print(e)
                     try:
+                        print("nothing found downloading thumbnail")
                         split = thumb.split('?')
                         img = split[0]
                         for word in word_dict:
@@ -255,9 +260,7 @@ async def livechart_fetch(last):
                         write_file(link,"livechart")
                     except Exception as e:
                         print(e)
-    
-        except Exception as e:
-            print(e)
+
 
 
 @bot.on(events.CallbackQuery)
@@ -285,8 +288,8 @@ async def fetch_news():
     while True:
         livechart_last = read_file("livechart")
         reddit_last = read_file("reddit")
-        reddit_last = await reddit_fetch(reddit_last)
-        livechart_last = await livechart_fetch(livechart_last)
+        await reddit_fetch(reddit_last)
+        await livechart_fetch(livechart_last)
         print((reddit_last,livechart_last))
         
         
@@ -294,7 +297,6 @@ async def fetch_news():
         await asyncio.sleep(60)    
         print("nothing")
     
-
 
 
 
