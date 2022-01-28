@@ -11,7 +11,10 @@ from telethon.tl.types import DocumentAttributeVideo
 import asyncpraw
 reddit = asyncpraw.Reddit(client_id = reddit_personal_use_script, client_secret = reddit_secret, user_agent = agent)
 
-channel_id = int(channel_id)
+try:
+    channel_id = int(channel_id)
+except:
+    channel_id = channel_id
 
 
 def delete_files():
@@ -228,11 +231,11 @@ async def livechart_fetch(last):
     
                     for image in media:
                         media_url = image['media_url']
-                    new_title = f"[{title}]({media_url})"
+                    new_title = f"[{title}]({link})"
     
                     for word in word_dict:
                         if word in title:
-                            new_title = title.replace(word, f"[{word}]({media_url})")
+                            new_title = title.replace(word, f"[{word}]({link})")
                             break
                     await bot.send_message(
                     channel, 
@@ -247,9 +250,10 @@ async def livechart_fetch(last):
                         print("nothing found downloading thumbnail")
                         split = thumb.split('?')
                         img = split[0]
+                        new_title = f"[{title}]({link})"
                         for word in word_dict:
                             if word in title:
-                                new_title = title.replace(word, f"[{word}]({img})")
+                                new_title = title.replace(word, f"[{word}]({link})")
                                 break
                         await bot.send_message(
                         channel, 
