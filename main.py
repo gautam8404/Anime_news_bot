@@ -31,6 +31,7 @@ def delete_files():
 
 ydl_opts = {
     'writethumbnail': True,
+    'noplaylist' : True,
     'format': '136+140''398+140' '22'  'bestvideo[ext!=webm]+bestaudio[ext!=webm]/best[ext!=webm]',
     'outtmpl': 'videos/youtube.mp4'
 }
@@ -226,7 +227,7 @@ async def livechart_fetch(last):
                     print("video not found looking for twiiter image")
                     split = link.split('/')
                     id = split[-1]
-                    status = api.get_status(id)
+                    status = api.get_status(id,tweet_mode='extended')
                     media = status.entities['media']
     
                     for image in media:
