@@ -10,7 +10,7 @@ A Bot which uses official Reddit api to get any new post of a specific subreddit
 <br></br>
 
 # Table of Content
-- [Reddit Kang Bot](#reddit-kang-bot)
+- [Anime News Bot](#reddit-kang-bot)
 - [Table of Content](#table-of-content)
 - [Features](#features)
 - [Environment Variables](#environment-variables)
@@ -48,7 +48,7 @@ To run this project, you will need to add the following environment variables to
 
 - `FLAIR` if you want to sort post of the target subreddit by flair, if you want all post then simply use `None`
 
-- `TWITTER_API_KEY` get it from https://developer.twitter.com/en/docs/twitter-api, NOTE: you need elevated access to use this bot
+- `TWITTER_API_KEY` get it from [here](https://developer.twitter.com/en/docs/twitter-api), NOTE: you need elevated access to use this bot
 
 - `TWITTER_API_SECRET` mentioned above
 
@@ -68,5 +68,5 @@ To run this project, you will need to add the following environment variables to
   
 # Creator
 
-- [Gautam8404](https://github.com/Gautam8404/Reddit-Kang)
+- [Gautam8404](https://github.com/Gautam8404
 
