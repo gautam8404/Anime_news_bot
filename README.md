@@ -68,5 +68,5 @@ To run this project, you will need to add the following environment variables to
   
 # Creator
 
-- [Gautam8404](https://github.com/Gautam8404
+- [Gautam8404](https://github.com/Gautam8404)
 
