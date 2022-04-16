@@ -120,7 +120,7 @@ async def reddit_fetch(last):
             if "playlist" in url:
                 print("playlist found, cancelling download")
             else:
-                word_dict = ["trailer", "Trailer", " pv", " PV", "teaser", "Teaser","visual", "Visual","preview", "Preview", "Announced","announced","project", "Project"," op", " OP", " ed", " ED","op","OP","ED","ed", "announcement", "Announcement", "anime", "Anime","official", "Official"]
+                word_dict = ["trailer", "Trailer"," pv"," PV", " pv", " PV", "teaser", "Teaser","visual", "Visual","preview", "Preview", "Announced","announced","project", "Project"," op", " OP", " ed", " ed ", " op ", " ED ", " OP "," ED","op","OP","ED","ed", "announcement", "Announcement", "anime", "Anime","official", "Official"]
                 if url != last:
                     try:
                         delete_files()
